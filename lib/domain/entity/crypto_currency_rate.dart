@@ -1,0 +1,37 @@
+import 'package:flutter_fifth_lab/domain/entity/crypto_currency.dart';
+import 'package:flutter_fifth_lab/domain/entity/crypto_currency_supply.dart';
+import 'package:flutter_fifth_lab/domain/entity/crypto_currency_trend.dart';
+import 'package:flutter_fifth_lab/domain/entity/money.dart';
+import 'package:meta/meta.dart';
+import 'package:equatable/equatable.dart';
+
+@immutable
+class CryptoCurrencyRate with EquatableMixin {
+  final CryptoCurrency cryptoCurrency;
+  final Supply supply;
+  final Money price;
+  final double marketCap;
+  final TrendHistory trendHistory;
+
+  const CryptoCurrencyRate({
+    required this.cryptoCurrency,
+    required this.supply,
+    required this.price,
+    required this.marketCap,
+    required this.trendHistory,
+  });
+
+  @override
+  List<Object> get props =>
+      [cryptoCurrency, supply, price, marketCap, trendHistory];
+
+  bool isSatisfiedBy(String query) {
+    return _nameContainsQuery(query) || _symbolContainsQuery(query);
+  }
+
+  bool _nameContainsQuery(String query) =>
+      cryptoCurrency.name.toLowerCase().contains(query.toLowerCase());
+
+  bool _symbolContainsQuery(String query) =>
+      cryptoCurrency.symbol.toLowerCase().contains(query.toLowerCase());
+}
