@@ -45,7 +45,7 @@ class CoinMarketQuote {
   final double price;
   @JsonKey(name: 'market_cap')
   final double marketCap;
-  @JsonKey(name: 'volume')
+  @JsonKey(name: 'volume_24h')
   final double volume;
   @JsonKey(name: 'percent_change_1h')
   final double percentageChangeLastHour;

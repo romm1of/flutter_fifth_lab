@@ -32,7 +32,7 @@ class _CryptoCurrencyListScreenState extends State<CryptoCurrencyListScreen> {
         onSuccess: (context, cryptoCurrencies) => CryptoCurrencyList(
           cryptoCurrencies,
           onValueSelected: _navigateToCryptoCurrencyDetails,
-          onRefresh: _cryptoCurrencyBloc!.refreshElements,
+          onRefresh: _cryptoCurrencyBloc.refreshElements,
         ),
         onRefreshing: (context, cryptoCurrencies) =>
             CryptoCurrencyList(cryptoCurrencies),
@@ -40,13 +40,13 @@ class _CryptoCurrencyListScreenState extends State<CryptoCurrencyListScreen> {
     );
   }
 
-Future<void> _navigateToCryptoCurrencyDetails(CryptoCurrencyRate value) {
+  Future<void> _navigateToCryptoCurrencyDetails(CryptoCurrencyRate value) {
     return Navigator.pushNamed(context, Routes.details, arguments: value);
   }
 
   @override
   void dispose() {
-    _cryptoCurrencyBloc!.close();
+    _cryptoCurrencyBloc.close();
     super.dispose();
   }
 }
